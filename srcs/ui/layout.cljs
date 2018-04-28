@@ -40,13 +40,7 @@
          [:ul.nav.navbar-nav.mr-auto
           [nav-item route :patients/index [:patients] "Patients"]
           [nav-item route :patients/new [:patients :new] "New Patient"]]
-         [:ul.nav.navbar-nav.my-2.my-lg-0
-          [nav-item route :core/notifications [:notifications] (wgt/icon :bell)]
-          [nav-item route :database/index [:db] (wgt/icon :database)]
-          [nav-item route :profile/index [:profile]
-           [:span
-            (if-let [pic (:picture @auth)] [:img.avatar {:src pic}] "(*_*)")
-            (when-let [a @auth] (or (:nickname a) (:email a)))]]]]]])))
+         [:ul.nav.navbar-nav.my-2.my-lg-0]]]])))
 
 (defn human-name [n]
   (str/join " "
@@ -78,7 +72,7 @@
        [menu]
        [:div.container
         [:ol.breadcrumb
-         (for [b @breadcrumbs]
+         (for [b @breadcrumbs] ^{:key (:uri b)}
            [:li.breadcrumb-item
             [:a {:href (str "#" (:uri b))} (:breadcrumb b)]])] ]
        [:div.container content]])))

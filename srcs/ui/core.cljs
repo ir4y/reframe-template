@@ -48,7 +48,7 @@
  (fn [{jwt :jwt {auth :auth} :cookie :as cofx} _]
    {:dispatch [:route-map/init routes/routes]
     ::cookies/set {:key :auth :value (or jwt auth)}
-    :db           (merge (:db cofx) {:base-url base-url})}))
+    :db           (merge (:db cofx) {:config {:base-url base-url}})}))
 
 
 (defn- mount-root []
